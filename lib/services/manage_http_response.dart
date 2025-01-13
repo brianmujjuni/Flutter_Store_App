@@ -18,10 +18,11 @@ void manageHttpResponse({
       showSnackBar(context, json.decode(response.body)['msg']);
       break;
     case 500:
-       showSnackBar(context, json.decode(response.body)['error']);
-       break;
+      showSnackBar(context, json.decode(response.body)['error']);
+      break;
     case 201:
       onSuccess();
+      break;
   }
 }
 
