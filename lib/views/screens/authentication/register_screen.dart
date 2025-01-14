@@ -5,7 +5,9 @@ import 'package:google_fonts/google_fonts.dart';
 class RegisterScreen extends StatelessWidget {
   // const RegisterScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  late String email;
+  late String fullname;
+  late String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
