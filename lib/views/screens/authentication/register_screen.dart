@@ -1,3 +1,4 @@
+import 'package:automex_store/controllers/auth_controller.dart';
 import 'package:automex_store/views/screens/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class RegisterScreen extends StatelessWidget {
   // const RegisterScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController _authController = AuthController();
   late String email;
   late String fullname;
   late String password;
@@ -60,13 +62,15 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    validator: (value){
-                      if(value == null || value.isEmpty){
+                    onChanged: (value) {
+                      fullname = value;
+                    },
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
                         return 'Please enter your full name';
-                      }else{
+                      } else {
                         return null;
                       }
-                      
                     },
                     decoration: InputDecoration(
                       fillColor: Colors.white,
@@ -111,6 +115,9 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    onChanged: (value) {
+                      email = value;
+                    },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -146,7 +153,10 @@ class RegisterScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
-                    validator: (value){
+                    onChanged: (value) {
+                      password = value;
+                    },
+                    validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
                       } else {
@@ -154,7 +164,6 @@ class RegisterScreen extends StatelessWidget {
                       }
                     },
                     decoration: InputDecoration(
-                    
                         fillColor: Colors.white,
                         filled: true,
                         border: OutlineInputBorder(
@@ -184,15 +193,21 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
-                      if(_formKey.currentState!.validate()){
-                        print('all values are in already');
-                      }else{
-                        print('failed');
-                      }
-                    },
-                    child: Container(
+                    
+                    onTap: () async {
+                        if(_formKey.currentState!.validate()){
+                         await _authController.signupUsers(
+                            context: context,
+                            email: email,
+                            fullname: fullname,
+                            password: password);
+                        }else{
+                          print('failed to save');
+                        }
                       
+                    },
+                    
+                    child: Container(
                       width: 319,
                       height: 50,
                       decoration: BoxDecoration(
@@ -315,7 +330,8 @@ class RegisterScreen extends StatelessWidget {
                       Text(
                         'Sign In',
                         style: GoogleFonts.roboto(
-                            color: Color(0xFF103DE5), fontWeight: FontWeight.bold),
+                            color: Color(0xFF103DE5),
+                            fontWeight: FontWeight.bold),
                       ),
                     ],
                   )

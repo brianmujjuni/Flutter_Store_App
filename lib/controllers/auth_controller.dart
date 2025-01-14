@@ -17,10 +17,10 @@ class AuthController {
           state: '',
           locality: '',
           password: password);
-      http.Response response = await http.post(Uri.parse('$url/api/signup'),
+      http.Response response = await http.post(Uri.parse('$uri/api/signup'),
           body: user.toJson(),
           headers: <String, String>{
-            'Content-Type': 'application/json, charset=UTF-8'
+            'Content-Type': 'application/json; charset=UTF-8',
           });
       manageHttpResponse(
           response: response,
@@ -28,6 +28,8 @@ class AuthController {
           onSuccess: () {
             showSnackBar(context, 'Account has been created for you');
           });
-    } catch (err) {}
+    } catch (err) {
+      print(err);
+    }
   }
 }
