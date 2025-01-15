@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:automex_store/global_variables.dart';
 import 'package:automex_store/models/user.dart';
 import 'package:automex_store/services/manage_http_response.dart';
@@ -28,6 +30,27 @@ class AuthController {
           onSuccess: () {
             showSnackBar(context, 'Account has been created for you');
           });
+    } catch (err) {
+      print(err);
+    }
+  }
+
+  //signin user function
+  Future<void> signInUser(
+      {required context,
+      required String email,
+      required String password}) async {
+    try {
+      http.Response response = await http.post(Uri.parse("$uri/api/signin"),
+          body: jsonEncode(
+            {'email': email, 'password': password},
+          ),
+          headers: <String, String>{
+            'Content-Type': 'application/json; charset=UTF-8',
+          });
+      //handle response using the managehttpresponse
+      manageHttpResponse(
+          response: response, context: context, onSuccess: () {});
     } catch (err) {
       print(err);
     }
