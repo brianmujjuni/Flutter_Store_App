@@ -5,7 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
+  late String email;
+  late String password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +59,9 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   TextFormField(
+                    onChanged: (value){
+                      email = value;
+                    },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
@@ -95,6 +99,9 @@ class LoginScreen extends StatelessWidget {
                     height: 20,
                   ),
                   TextFormField(
+                    onChanged: (value){
+                      password = value;
+                    },
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your password';
