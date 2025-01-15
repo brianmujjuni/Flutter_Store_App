@@ -50,7 +50,9 @@ class AuthController {
           });
       //handle response using the managehttpresponse
       manageHttpResponse(
-          response: response, context: context, onSuccess: () {});
+          response: response, context: context, onSuccess: () {
+            showSnackBar(context, 'You have successfully signed In');
+          });
     } catch (err) {
       print(err);
     }

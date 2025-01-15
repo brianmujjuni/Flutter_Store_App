@@ -141,9 +141,9 @@ class LoginScreen extends StatelessWidget {
                     height: 20,
                   ),
                   InkWell(
-                    onTap: () {
+                    onTap: ()async {
                       if(_formKey.currentState!.validate()){
-                        print('validation is through');
+                      await _authController.signInUser(context: context, email: email, password: password);
                       }else{
                         return null;
                       }
