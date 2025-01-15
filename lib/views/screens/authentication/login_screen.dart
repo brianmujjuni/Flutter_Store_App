@@ -1,3 +1,4 @@
+import 'package:automex_store/controllers/auth_controller.dart';
 import 'package:automex_store/views/screens/authentication/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -5,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 class LoginScreen extends StatelessWidget {
   // const LoginScreen({super.key});
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final AuthController _authController = AuthController();
   late String email;
   late String password;
   @override
