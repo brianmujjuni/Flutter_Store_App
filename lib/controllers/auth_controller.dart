@@ -18,7 +18,8 @@ class AuthController {
           email: email,
           state: '',
           locality: '',
-          password: password);
+          password: password,
+          token: '');
       http.Response response = await http.post(Uri.parse('$uri/api/signup'),
           body: user.toJson(),
           headers: <String, String>{
