@@ -19,8 +19,9 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       isLoading = true;
     });
-    await _authController.signInUser(
-        context: context, email: email, password: password).whenComplete(() {
+    await _authController
+        .signInUser(context: context, email: email, password: password)
+        .whenComplete(() {
       setState(() {
         isLoading = false;
       });
@@ -246,15 +247,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                           Center(
-                            child: isLoading? CircularProgressIndicator(color: Colors.white,) : Text(
-                              'Sign In ',
-                              style: GoogleFonts.getFont(
-                                'Lato',
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            child: isLoading
+                                ? CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : Text(
+                                    'Sign In ',
+                                    style: GoogleFonts.getFont(
+                                      'Lato',
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                           )
                         ],
                       ),

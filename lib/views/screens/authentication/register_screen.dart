@@ -3,13 +3,37 @@ import 'package:automex_store/views/screens/authentication/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class RegisterScreen extends StatelessWidget {
-  // const RegisterScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  @override
+  _RegisterScreenState createState() => _RegisterScreenState();
+}
+
+class _RegisterScreenState extends State<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final AuthController _authController = AuthController();
   late String email;
   late String fullname;
   late String password;
+  bool _isLoading = false;
+
+  registerUser() async {
+    setState(() {
+      _isLoading = true;
+    });
+    await _authController
+        .signupUsers(
+            context: context,
+            email: email,
+            fullname: fullname,
+            password: password)
+        .whenComplete(() {
+      _formKey.currentState!.reset();
+      setState(() {
+        _isLoading = false;
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -193,20 +217,13 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                   ),
                   InkWell(
-                    
                     onTap: () async {
-                        if(_formKey.currentState!.validate()){
-                         await _authController.signupUsers(
-                            context: context,
-                            email: email,
-                            fullname: fullname,
-                            password: password);
-                        }else{
-                          print('failed to save');
-                        }
-                      
+                      if (_formKey.currentState!.validate()) {
+                        registerUser();
+                      } else {
+                        print('failed to save');
+                      }
                     },
-                    
                     child: Container(
                       width: 319,
                       height: 50,
@@ -287,15 +304,19 @@ class RegisterScreen extends StatelessWidget {
                             ),
                           ),
                           Center(
-                            child: Text(
-                              'Sign Up ',
-                              style: GoogleFonts.getFont(
-                                'Lato',
-                                color: Colors.white,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+                            child: _isLoading
+                                ? CircularProgressIndicator(
+                                    color: Colors.white,
+                                  )
+                                : Text(
+                                    'Sign Up ',
+                                    style: GoogleFonts.getFont(
+                                      'Lato',
+                                      color: Colors.white,
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                           )
                         ],
                       ),
