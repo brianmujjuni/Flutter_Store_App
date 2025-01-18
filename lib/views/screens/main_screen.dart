@@ -46,6 +46,7 @@ class _MainScreenState extends State<MainScreen> {
         BottomNavigationBarItem(
             icon: Image.asset("assets/icons/user.png",width: 25,), label: "Account")
       ]),
+      body: _pages[_pageIndex],
     );
   }
 }
