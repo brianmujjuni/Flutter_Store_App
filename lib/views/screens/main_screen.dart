@@ -1,3 +1,8 @@
+import 'package:automex_store/views/screens/nav_screens/account_screen.dart';
+import 'package:automex_store/views/screens/nav_screens/cart_screen.dart';
+import 'package:automex_store/views/screens/nav_screens/favorite_screen.dart';
+import 'package:automex_store/views/screens/nav_screens/home_screen.dart';
+import 'package:automex_store/views/screens/nav_screens/stores_screen.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {
@@ -7,6 +12,13 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
  int _pageIndex = 0;
+ final List<Widget> _pages = [
+  HomeScreen(),
+  FavoriteScreen(),
+  StoresScreen(),
+  CartScreen(),
+  AccountScreen(),
+ ];
 
   @override
   Widget build(BuildContext context) {
