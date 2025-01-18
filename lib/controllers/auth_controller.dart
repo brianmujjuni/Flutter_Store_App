@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:automex_store/global_variables.dart';
 import 'package:automex_store/models/user.dart';
 import 'package:automex_store/services/manage_http_response.dart';
+import 'package:automex_store/views/screens/authentication/login_screen.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class AuthController {
@@ -29,6 +31,7 @@ class AuthController {
           response: response,
           context: context,
           onSuccess: () {
+            Navigator.push(context, MaterialPageRoute(builder:(context)=> LoginScreen()));
             showSnackBar(context, 'Account has been created for you');
           });
     } catch (err) {
