@@ -4,6 +4,7 @@ import 'package:automex_store/global_variables.dart';
 import 'package:automex_store/models/user.dart';
 import 'package:automex_store/services/manage_http_response.dart';
 import 'package:automex_store/views/screens/authentication/login_screen.dart';
+import 'package:automex_store/views/screens/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,7 +32,8 @@ class AuthController {
           response: response,
           context: context,
           onSuccess: () {
-            Navigator.push(context, MaterialPageRoute(builder:(context)=> LoginScreen()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => LoginScreen()));
             showSnackBar(context, 'Account has been created for you');
           });
     } catch (err) {
@@ -54,7 +56,13 @@ class AuthController {
           });
       //handle response using the managehttpresponse
       manageHttpResponse(
-          response: response, context: context, onSuccess: () {
+          response: response,
+          context: context,
+          onSuccess: () {
+            Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) =>const MainScreen()),
+                (route) => false);
             showSnackBar(context, 'You have successfully signed In');
           });
     } catch (err) {
