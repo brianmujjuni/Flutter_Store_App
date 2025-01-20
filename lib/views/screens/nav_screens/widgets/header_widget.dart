@@ -14,7 +14,34 @@ class HeaderWidget extends StatelessWidget {
             "assets/icons/searchBanner.jpeg",
             width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
-          )
+          ),
+          Positioned(
+            left: 48,
+            top: 68,
+            child: SizedBox(
+              width: 250,
+              height: 50,
+              child: TextField(
+                decoration: InputDecoration(
+                    hintText: "Search for products",
+                    hintStyle: TextStyle(
+                      fontSize: 14,
+                      color: Color(0xFF7F7F7F),
+                    ),
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 16,
+                    ),
+                    prefixIcon: Image.asset(
+                      "assets/icons/searc1.png",
+                    ),
+                    suffixIcon: Image.asset("assets/icons/cam.png"),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    focusColor: Colors.black),
+              ),
+            ),
+          ),
         ],
       ),
     );
