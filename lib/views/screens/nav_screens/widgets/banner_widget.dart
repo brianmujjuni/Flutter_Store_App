@@ -1,3 +1,5 @@
+import 'package:automex_store/controllers/banner_controller.dart';
+import 'package:automex_store/models/banner_model.dart';
 import 'package:flutter/material.dart';
 
 class BannerWidget extends StatefulWidget {
@@ -8,6 +10,14 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
+  late Future<List<BannerModel>> futureBanners;
+  @override
+  void initState() {
+    // TODO: implement initState
+
+    super.initState();
+    futureBanners = BannerController().fetchBanners();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
