@@ -10,26 +10,56 @@ class BannerWidget extends StatefulWidget {
 }
 
 class _BannerWidgetState extends State<BannerWidget> {
-  late Future<List<BannerModel>> futureBanners;
+  late Future<List<BannerModel>> _banners;
   @override
   void initState() {
     // TODO: implement initState
 
     super.initState();
-    futureBanners = BannerController().fetchBanners();
+    _banners = BannerController().fetchBanners();
   }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        width: MediaQuery.of(context).size.width,
-        height: 170,
-        decoration: BoxDecoration(
-          color: Color(0xFFF7F7F7),
-          borderRadius: BorderRadius.circular(4),
-        ),
-      ),
+          width: MediaQuery.of(context).size.width,
+          height: 170,
+          decoration: BoxDecoration(
+            color: Color(0xFFF7F7F7),
+            borderRadius: BorderRadius.circular(4),
+          ),
+          child: FutureBuilder(
+              future: _banners,
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text("Error: ${snapshot.error}"),
+                  );
+                } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                  return Center(
+                    child: Text("No Banners Found"),
+                  );
+                } else {
+                  final banners = snapshot.data!;
+                  return PageView.builder(
+                    itemCount: banners.length,
+                    itemBuilder: (context, index) {
+                      final banner = banners[index];
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Image.network(
+                          banner.image,
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
+                  );
+                }
+              })),
     );
   }
 }
