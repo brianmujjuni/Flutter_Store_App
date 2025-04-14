@@ -12,27 +12,31 @@ class ReusableTextWidget extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Row(
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.quicksand(
-              fontSize: 16,
-              fontWeight: FontWeight.w600,
-              color: const Color(0xFF000000),
+    return Padding(
+      padding: const EdgeInsets.only(left: 25,right: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              title,
+              style: GoogleFonts.quicksand(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: const Color(0xFF000000),
+              ),
             ),
-          ),
-          
-          Text(
-            subtitle,
-            style: GoogleFonts.quicksand(
-              fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Colors.blue,
+            
+            Text(
+              subtitle,
+              style: GoogleFonts.quicksand(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue,
+              ),
             ),
-          ),
-        ],
-       
+          ],
+         
+      ),
     );
   }
 }
