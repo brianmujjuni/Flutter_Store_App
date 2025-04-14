@@ -54,6 +54,8 @@ class _BannerWidgetState extends State<BannerWidget> {
                         child: Image.network(
                           banner.image,
                           fit: BoxFit.cover,
+                          width: MediaQuery.of(context).size.width,
+                          height: 170,
                         ),
                       );
                     },
