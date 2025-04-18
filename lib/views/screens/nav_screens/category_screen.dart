@@ -56,10 +56,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             title: Text(
                               category.name,
                               style: GoogleFonts.quicksand(
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold,
-                                color: _selectedCategory == category?Colors.blue: Colors.black
-                              ),
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: _selectedCategory == category
+                                      ? Colors.blue
+                                      : Colors.black),
                             ),
                             onTap: () {
                               // Handle category tap
@@ -75,15 +76,39 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
           ),
           //Right side display selected category details
-          Expanded(flex: 5,child: _selectedCategory!=null?Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(_selectedCategory!.name),
-              )
-            ],
-          ):Container(),)
+          Expanded(
+            flex: 5,
+            child: _selectedCategory != null
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          _selectedCategory!.name,
+                          style: GoogleFonts.quicksand(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 1.7,
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          height: 150,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(_selectedCategory!.banner,),
+                              fit: BoxFit.cover
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  )
+                : Container(),
+          )
         ],
       ),
     );
