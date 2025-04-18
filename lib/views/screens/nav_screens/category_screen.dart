@@ -1,5 +1,7 @@
 import 'package:automex_store/controllers/category_controller.dart';
+import 'package:automex_store/controllers/subcategory_controller.dart';
 import 'package:automex_store/models/category_model.dart';
+import 'package:automex_store/models/subcategory_model.dart';
 import 'package:automex_store/views/screens/nav_screens/widgets/header_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -14,12 +16,20 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   late Future<List<Category>> _categories;
   Category? _selectedCategory;
+  List<Subcategory> _subcategories = [];
+  final SubcategoryController _subcategoryController = SubcategoryController();
   @override
   void initState() {
     super.initState();
     _categories = CategoryController().fetchCategories();
   }
-
+  //this will load subcategories base on category name
+  Future<void>_loadSubcategories(String categoryName)async{
+   final subcategories =  await _subcategoryController.getSubCategoriesByCategoryName(categoryName);
+   setState(() {
+     _subcategories = subcategories;
+   });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +77,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               setState(() {
                                 _selectedCategory = category;
                               });
+                              _loadSubcategories(category.name);
                             },
                           );
                         });
@@ -99,9 +110,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           height: 150,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(_selectedCategory!.banner,),
-                              fit: BoxFit.cover
-                            ),
+                                image: NetworkImage(
+                                  _selectedCategory!.banner,
+                                ),
+                                fit: BoxFit.cover),
                           ),
                         ),
                       )
