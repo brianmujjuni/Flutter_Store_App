@@ -1,5 +1,6 @@
 import 'package:automex_store/controllers/category_controller.dart';
 import 'package:automex_store/models/category_model.dart';
+import 'package:automex_store/views/screens/detail/screens/innner_category_screen.dart';
 import 'package:automex_store/views/screens/nav_screens/widgets/reusable_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -48,22 +49,30 @@ class _CategoryItemWidgetState extends State<CategoryItemWidget> {
                     crossAxisCount: 4, mainAxisSpacing: 8, crossAxisSpacing: 8),
                 itemBuilder: (context, index) {
                   final category = categories[index];
-                  return Column(
-                    children: [
-                      Image.network(
-                        category.image,
-                        height: 47,
-                        width: 47,
-                      ),
-                      Text(
-                        category.name,
-                        style: GoogleFonts.quicksand(
-                          fontSize: 15,
-                          fontWeight: FontWeight.w500,
-                          color: Color(0xFF000000),
+                  return InkWell(
+                    onTap: () => {
+                      Navigator.push(context,MaterialPageRoute(builder: (context){
+                        // return InnnerCategoryScreen(category: category,);
+                        return InnnerCategoryScreen(category: category);
+                      }))
+                    },
+                    child: Column(
+                      children: [
+                        Image.network(
+                          category.image,
+                          height: 47,
+                          width: 47,
                         ),
-                      ),
-                    ],
+                        Text(
+                          category.name,
+                          style: GoogleFonts.quicksand(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: Color(0xFF000000),
+                          ),
+                        ),
+                      ],
+                    ),
                   );
                 },
               );
