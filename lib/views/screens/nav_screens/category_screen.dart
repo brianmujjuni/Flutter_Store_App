@@ -73,7 +73,17 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 },
               ),
             ),
-          )
+          ),
+          //Right side display selected category details
+          Expanded(flex: 5,child: _selectedCategory!=null?Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(_selectedCategory!.name),
+              )
+            ],
+          ):Container(),)
         ],
       ),
     );
