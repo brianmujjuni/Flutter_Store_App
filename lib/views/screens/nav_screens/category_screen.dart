@@ -23,13 +23,16 @@ class _CategoryScreenState extends State<CategoryScreen> {
     super.initState();
     _categories = CategoryController().fetchCategories();
   }
+
   //this will load subcategories base on category name
-  Future<void>_loadSubcategories(String categoryName)async{
-   final subcategories =  await _subcategoryController.getSubCategoriesByCategoryName(categoryName);
-   setState(() {
-     _subcategories = subcategories;
-   });
+  Future<void> _loadSubcategories(String categoryName) async {
+    final subcategories = await _subcategoryController
+        .getSubCategoriesByCategoryName(categoryName);
+    setState(() {
+      _subcategories = subcategories;
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -116,7 +119,56 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 fit: BoxFit.cover),
                           ),
                         ),
-                      )
+                      ),
+                      _subcategories.isNotEmpty
+                          ? GridView.builder(
+                              shrinkWrap: true,
+                              itemCount: _subcategories.length,
+                              gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 3,
+                                      crossAxisSpacing: 8,
+                                      mainAxisSpacing: 4),
+                              itemBuilder: (context, index) {
+                                final subcategory = _subcategories[index];
+                                return Column(
+                                  children: [
+                                    Container(
+                                      width: 50,
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey.shade200),
+                                      child: Center(
+                                        child: Image.network(
+                                          subcategory.image,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        subcategory.subCategoryName,
+                                        style: GoogleFonts.quicksand(
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    )
+                                  ],
+                                );
+                              })
+                          : Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Center(
+                                child: Text(
+                                  "No Sub categories",
+                                  style: GoogleFonts.quicksand(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    letterSpacing: 1.7,
+                                  ),
+                                ),
+                              ),
+                            ),
                     ],
                   )
                 : Container(),
