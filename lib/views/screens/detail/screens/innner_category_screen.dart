@@ -3,6 +3,7 @@ import 'package:automex_store/models/category_model.dart';
 import 'package:automex_store/models/subcategory_model.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/inner_banner_widget.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/inner_header_widget.dart';
+import 'package:automex_store/views/screens/detail/screens/widgets/subcategory_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -60,40 +61,30 @@ class _InnnerCategoryScreenState extends State<InnnerCategoryScreen> {
                   );
                 } else {
                   final subcategories = snapshot.data!;
-                  return GridView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: subcategories.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8),
-                    itemBuilder: (context, index) {
-                      final subcategory = subcategories[index];
-                      return InkWell(
-                        onTap: () => {},
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            children: [
-                              Image.network(
-                                subcategory.image,
-                                height: 47,
-                                width: 47,
-                              ),
-                              Text(
-                                subcategory.subCategoryName,
-                                style: GoogleFonts.quicksand(
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.w500,
-                                  color: Color(0xFF000000),
-                                ),
-                              ),
-                            ],
+                  return SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Column(
+                      children: List.generate((subcategories.length / 7).ceil(),
+                          (setIndex) {
+                        final start = setIndex * 7;
+                        final end = (setIndex + 1) * 7;
+                        return Padding(
+                          padding: EdgeInsets.all(8.9),
+                          child: Row(
+                            children: subcategories
+                                .sublist(
+                                    start,
+                                    end > subcategories.length
+                                        ? subcategories.length
+                                        : end)
+                                .map((subcategory) => SubcategoryTileWidget(
+                                    image: subcategory.image,
+                                    title: subcategory.subCategoryName))
+                                .toList(),
                           ),
-                        ),
-                      );
-                    },
+                        );
+                      }),
+                    ),
                   );
                 }
               },
