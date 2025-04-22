@@ -1,3 +1,4 @@
+import 'package:automex_store/views/screens/detail/screens/widgets/inner_header_widget.dart';
 import 'package:automex_store/views/screens/nav_screens/account_screen.dart';
 import 'package:automex_store/views/screens/nav_screens/cart_screen.dart';
 import 'package:automex_store/views/screens/nav_screens/category_screen.dart';

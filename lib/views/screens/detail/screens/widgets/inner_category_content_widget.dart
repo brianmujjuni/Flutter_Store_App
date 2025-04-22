@@ -34,13 +34,16 @@ class _InnerCategoryContentWidgetState
         child: Column(
           children: [
             InnerBannerWidget(image: widget.category.banner),
-            Center(
-              child: Text(
-                "Shop By Category",
-                style: GoogleFonts.quicksand(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                   ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Center(
+                child: Text(
+                  "Shop By Category",
+                  style: GoogleFonts.quicksand(
+                      fontSize: 19,
+                      fontWeight: FontWeight.bold,
+                     ),
+                ),
               ),
             ),
             FutureBuilder(
