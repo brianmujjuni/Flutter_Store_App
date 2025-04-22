@@ -1,6 +1,5 @@
 import 'package:automex_store/models/category_model.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/inner_category_content_widget.dart';
-import 'package:automex_store/views/screens/detail/screens/widgets/inner_header_widget.dart';
 import 'package:automex_store/views/screens/nav_screens/account_screen.dart';
 import 'package:automex_store/views/screens/nav_screens/cart_screen.dart';
 import 'package:automex_store/views/screens/nav_screens/category_screen.dart';
@@ -17,9 +16,9 @@ class InnnerCategoryScreen extends StatefulWidget {
 }
 
 class _InnnerCategoryScreenState extends State<InnnerCategoryScreen> {
+  int pageIndex = 0;
   @override
   Widget build(BuildContext context) {
-    int pageIndex = 0;
     final List<Widget> pages = [
       InnerCategoryContentWidget(category: widget.category),
       FavoriteScreen(),
@@ -29,10 +28,7 @@ class _InnnerCategoryScreenState extends State<InnnerCategoryScreen> {
       AccountScreen(),
     ];
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
-        child: InnerHeaderWidget(),
-      ),
+     
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.purple,
           unselectedItemColor: Colors.grey,
@@ -63,7 +59,7 @@ class _InnnerCategoryScreenState extends State<InnnerCategoryScreen> {
                 label: "Category"),
             BottomNavigationBarItem(
                 icon: Image.asset(
-                  "assets/icons/mart.png", 
+                  "assets/icons/mart.png",
                   width: 25,
                 ),
                 label: "Stores"),

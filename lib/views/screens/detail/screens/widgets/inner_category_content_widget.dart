@@ -36,11 +36,11 @@ class _InnerCategoryContentWidgetState
             InnerBannerWidget(image: widget.category.banner),
             Center(
               child: Text(
-                "Shop By SubCategories",
+                "Shop By Category",
                 style: GoogleFonts.quicksand(
                     fontSize: 19,
                     fontWeight: FontWeight.bold,
-                    letterSpacing: 1.7),
+                   ),
               ),
             ),
             FutureBuilder(
@@ -54,7 +54,7 @@ class _InnerCategoryContentWidgetState
                   );
                 } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                   return const Center(
-                    child: Text("No Categories Found"),
+                    child: Text("No SubCategories Found"),
                   );
                 } else {
                   final subcategories = snapshot.data!;
