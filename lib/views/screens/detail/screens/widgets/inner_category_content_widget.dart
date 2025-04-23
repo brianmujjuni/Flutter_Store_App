@@ -2,6 +2,7 @@ import 'package:automex_store/controllers/subcategory_controller.dart';
 import 'package:automex_store/models/category_model.dart';
 import 'package:automex_store/models/subcategory_model.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/inner_banner_widget.dart';
+import 'package:automex_store/views/screens/detail/screens/widgets/inner_header_widget.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/subcategory_tile_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -30,6 +31,10 @@ class _InnerCategoryContentWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: PreferredSize(
+        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
+        child: const InnerHeaderWidget(),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
