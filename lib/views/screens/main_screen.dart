@@ -26,6 +26,12 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(
+      //     MediaQuery.of(context).size.height * 0.20,
+      //   ),
+      //   child: InnerHeaderWidget(),
+      // ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Colors.purple,
         unselectedItemColor: Colors.grey,

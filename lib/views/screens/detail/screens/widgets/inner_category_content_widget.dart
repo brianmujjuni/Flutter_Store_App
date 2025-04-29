@@ -31,10 +31,10 @@ class _InnerCategoryContentWidgetState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
-        child: const InnerHeaderWidget(),
-      ),
+      //  appBar: PreferredSize(
+      //   preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 20),
+      //   child: const InnerHeaderWidget(),
+      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [

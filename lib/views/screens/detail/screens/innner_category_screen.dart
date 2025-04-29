@@ -29,12 +29,12 @@ class _InnnerCategoryScreenState extends State<InnnerCategoryScreen> {
       AccountScreen(),
     ];
     return Scaffold(
-      // appBar: PreferredSize(
-      //   preferredSize: Size.fromHeight(
-      //     MediaQuery.of(context).size.height * 0.20,
-      //   ),
-      //   child: InnerHeaderWidget(),
-      // ),
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(
+          MediaQuery.of(context).size.height * 0.20,
+        ),
+        child: InnerHeaderWidget(),
+      ),
       bottomNavigationBar: BottomNavigationBar(
           selectedItemColor: Colors.purple,
           unselectedItemColor: Colors.grey,
