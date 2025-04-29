@@ -40,6 +40,7 @@ class User {
   //Deserialize: convert a map to a user object
   //the factory constructor take a Map(usually obtained from a json object)
   //and converts it into a User Object
+
   factory User.fromMap(Map<String, dynamic> map) {
     return User(
       id: map['_id'] as String? ?? "",
@@ -51,4 +52,7 @@ class User {
       token: map['token'] as String? ?? "",
     );
   }
+
+  factory User.fromJson(String source) =>
+      User.fromMap(json.decode(source) as Map<String, dynamic>);
 }
