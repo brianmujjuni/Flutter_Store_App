@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class FavoriteScreen extends StatelessWidget {
@@ -6,8 +5,26 @@ class FavoriteScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("Favourites"),)
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize:
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.20),
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          height: 118,
+          clipBehavior: Clip.hardEdge,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage(
+                'assets/icons/cartb.png',
+              ),
+            ),
+          ),
+        ),
+      ),
+      body: Center(
+        child: Text("Favourites"),
+      ),
     );
   }
 }
