@@ -23,7 +23,8 @@ class UserProvider extends StateNotifier<User?> {
     state = User.fromJson(userJson);
   }
 
-  //make the user object accissible to other classes
+  
+}
+//make the user object accissible to other classes
   final userProvider =
       StateNotifierProvider<UserProvider, User?>((ref) => UserProvider());
-}
