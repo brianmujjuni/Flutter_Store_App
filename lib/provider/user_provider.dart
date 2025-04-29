@@ -19,7 +19,11 @@ class UserProvider extends StateNotifier<User?> {
   //Getter method to extract value from an object
   User? get user => state;
   //Setter method to update the state of the user object
-  void setUser(String userJson){
+  void setUser(String userJson) {
     state = User.fromJson(userJson);
   }
+
+  //make the user object accissible to other classes
+  final userProvider =
+      StateNotifierProvider<UserProvider, User?>((ref) => UserProvider());
 }
