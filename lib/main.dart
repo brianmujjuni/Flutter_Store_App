@@ -23,6 +23,9 @@ class MyApp extends ConsumerWidget {
     if (token != null && userJson != null) {
       //If token and user data are available, set the user data in the provider
       ref.read(userProvider.notifier).setUser(userJson);
+    }else{
+      //If token and user data are not available, clear the user data in the provider
+      ref.read(userProvider.notifier).signout();
     }
   }
 
