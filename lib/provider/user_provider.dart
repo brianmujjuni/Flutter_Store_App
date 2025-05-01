@@ -23,6 +23,10 @@ class UserProvider extends StateNotifier<User?> {
     state = User.fromJson(userJson);
   }
 
+  //Method to clear the user data
+  void signout(){
+    state = null;
+  }
   
 }
 //make the user object accissible to other classes
