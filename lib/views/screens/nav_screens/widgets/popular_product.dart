@@ -1,5 +1,6 @@
 import 'package:automex_store/controllers/product_controller.dart';
 import 'package:automex_store/models/product.dart';
+import 'package:automex_store/views/screens/nav_screens/widgets/product_item_widget.dart';
 import 'package:flutter/material.dart';
 
 class PopularProduct extends StatefulWidget {
@@ -37,13 +38,15 @@ class _PopularProductState extends State<PopularProduct> {
             );
           } else {
             final products = snapshot.data;
-            return ListView.builder(
-              itemCount: products!.length,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                final product = products[index];
-                return Text(product.productName);
-              },
+            return SizedBox(
+              height: 250,
+              child: ListView.builder(
+                itemCount: products!.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ProductItemWidget();
+                },
+              ),
             );
           }
         });
