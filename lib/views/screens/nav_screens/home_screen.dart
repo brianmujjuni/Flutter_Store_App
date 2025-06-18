@@ -18,6 +18,7 @@ class HomeScreen extends StatelessWidget {
           BannerWidget(),
           CategoryItemWidget(),
           ReusableTextWidget(title: 'Popular Products', subtitle: 'View all'),
+         
           PopularProduct()
         ],
       ),

@@ -17,8 +17,19 @@ class ProductItemWidget extends StatelessWidget {
           Container(
             height: 170,
             decoration: BoxDecoration(
-                color: Color(0xffF2F2F2),
-                borderRadius: BorderRadius.circular(24)),
+              color: Color(0xffF2F2F2),
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: Stack(
+              children: [
+                Image.network(
+                  product.images[0],
+                  height: 170,
+                  width: 170,
+                  fit: BoxFit.cover,
+                )
+              ],
+            ),
           )
         ],
       ),
