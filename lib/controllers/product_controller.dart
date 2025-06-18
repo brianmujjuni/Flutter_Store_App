@@ -4,7 +4,7 @@ import 'package:automex_store/models/product.dart';
 import 'package:http/http.dart' as http;
 class ProductController {
 
-  Future<List<Product>> fetchCategories() async {
+  Future<List<Product>> fetchProducts() async {
     try {
       final response = await http.get(Uri.parse("$uri/api/popular-products"),
           headers: <String, String>{
