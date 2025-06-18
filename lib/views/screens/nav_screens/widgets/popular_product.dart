@@ -1,3 +1,4 @@
+import 'package:automex_store/controllers/product_controller.dart';
 import 'package:automex_store/models/product.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,39 @@ class _PopularProductState extends State<PopularProduct> {
   //A future that will hold the list of popular products
   late Future<List<Product>> futurePopularProducts;
   @override
+  void initState() {
+    super.initState();
+    futurePopularProducts = ProductController().fetchProducts();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return FutureBuilder(
+        future: futurePopularProducts,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error ${snapshot.error}'),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(
+              child: Text('No popular Products'),
+            );
+          } else {
+            final products = snapshot.data;
+            return ListView.builder(
+              itemCount: products!.length,
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                final product = products[index];
+                return Text(product.productName);
+              },
+            );
+          }
+        });
   }
 }
