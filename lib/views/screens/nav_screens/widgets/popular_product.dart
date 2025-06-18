@@ -44,7 +44,7 @@ class _PopularProductState extends State<PopularProduct> {
                 itemCount: products!.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
-                  return ProductItemWidget();
+                  return ProductItemWidget(product: product,);
                 },
               ),
             );

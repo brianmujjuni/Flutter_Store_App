@@ -1,8 +1,11 @@
+import 'package:automex_store/models/product.dart';
 import 'package:flutter/material.dart';
 
 class ProductItemWidget extends StatelessWidget {
-  const ProductItemWidget({super.key});
+  // const ProductItemWidget({super.key});
+  final Product product;
 
+  const ProductItemWidget({super.key, required this.product});
   @override
   Widget build(BuildContext context) {
     return Container(
