@@ -41,6 +41,7 @@ class _PopularProductState extends State<PopularProduct> {
             return SizedBox(
               height: 250,
               child: ListView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: products!.length,
                 itemBuilder: (context, index) {
                   final product = products[index];
