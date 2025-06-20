@@ -5,6 +5,8 @@ import 'package:automex_store/models/product.dart';
 import 'package:automex_store/models/subcategory_model.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/inner_banner_widget.dart';
 import 'package:automex_store/views/screens/detail/screens/widgets/subcategory_tile_widget.dart';
+import 'package:automex_store/views/screens/nav_screens/widgets/product_item_widget.dart';
+import 'package:automex_store/views/screens/nav_screens/widgets/reusable_text_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -99,6 +101,37 @@ class _InnerCategoryContentWidgetState
                 }
               },
             ),
+            ReusableTextWidget(title: 'Popular Products', subtitle: 'View all'),
+            FutureBuilder(
+        future: futureProducts,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (snapshot.hasError) {
+            return Center(
+              child: Text('Error ${snapshot.error}'),
+            );
+          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+            return Center(
+              child: Text('No products under this category'),
+            );
+          } else {
+            final products = snapshot.data;
+            return SizedBox(
+              height: 250,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: products!.length,
+                itemBuilder: (context, index) {
+                  final product = products[index];
+                  return ProductItemWidget(product: product,);
+                },
+              ),
+            );
+          }
+        })
           ],
         ),
       ),
