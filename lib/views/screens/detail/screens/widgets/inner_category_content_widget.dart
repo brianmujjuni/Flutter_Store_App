@@ -103,35 +103,37 @@ class _InnerCategoryContentWidgetState
             ),
             ReusableTextWidget(title: 'Popular Products', subtitle: 'View all'),
             FutureBuilder(
-        future: futureProducts,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (snapshot.hasError) {
-            return Center(
-              child: Text('Error ${snapshot.error}'),
-            );
-          } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return Center(
-              child: Text('No products under this category'),
-            );
-          } else {
-            final products = snapshot.data;
-            return SizedBox(
-              height: 250,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: products!.length,
-                itemBuilder: (context, index) {
-                  final product = products[index];
-                  return ProductItemWidget(product: product,);
-                },
-              ),
-            );
-          }
-        })
+                future: futureProducts,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(),
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error ${snapshot.error}'),
+                    );
+                  } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                    return Center(
+                      child: Text('No products under this category'),
+                    );
+                  } else {
+                    final products = snapshot.data;
+                    return SizedBox(
+                      height: 250,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: products!.length,
+                        itemBuilder: (context, index) {
+                          final product = products[index];
+                          return ProductItemWidget(
+                            product: product,
+                          );
+                        },
+                      ),
+                    );
+                  }
+                }),
           ],
         ),
       ),
