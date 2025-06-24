@@ -76,4 +76,19 @@ class CartNotifier extends StateNotifier<Map<String, Cart>> {
     state.remove(productId);
     state = {...state};
   }
+
+  //Method to calculate total amount of items in cart
+  double calculateTotalAmount() {
+    double totalamount = 0.0;
+    state.forEach((productId, cartItem) {
+      totalamount += cartItem.quantity * cartItem.productPrice;
+    });
+    return totalamount;
+  }
 }
+
+//Define a stateNotifierProvider to expose an instance of thee CartNotifer making it accisible in the app
+final cartProvider =
+    StateNotifierProvider<CartNotifier, Map<String, Cart>>((ref) {
+  return CartNotifier();
+});
