@@ -54,12 +54,21 @@ class CartNotifier extends StateNotifier<Map<String, Cart>> {
       };
     }
   }
+
   //method to increment the quantity of a product in the cart
-  void IncrementCartItem(String productId){
-    if(state.containsKey(productId)){
+  void incrementCartItem(String productId) {
+    if (state.containsKey(productId)) {
       state[productId]!.quantity++;
       //Notify listeners that the state has change
-      state ={...state};
+      state = {...state};
+    }
+  }
+
+  //Method to decrement the quantity of a product in the cart
+  void decrementCartItem(String productId) {
+    if (state.containsKey(productId)) {
+      state[productId]!.quantity--;
+      state = {...state};
     }
   }
 }
