@@ -141,7 +141,7 @@ class _ProductDetailScreenState extends ConsumerState<ProductDetailScreen> {
                 ),
                 Text(
                   widget.product.description,
-                  style: GoogleFonts.mochiyPopOne(
+                  style: GoogleFonts.lato(
                     letterSpacing: 1.7,
                     fontSize: 15,
                   ),
