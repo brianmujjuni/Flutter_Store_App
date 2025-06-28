@@ -39,6 +39,7 @@ class CartNotifier extends StateNotifier<Map<String, Cart>> {
     } else {
       //if the product not in cart add it with the provided details
       state = {
+        ...state,
         productId: Cart(
           productName: productName,
           productPrice: productPrice,
