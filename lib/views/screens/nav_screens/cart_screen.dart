@@ -1,4 +1,5 @@
 import 'package:automex_store/provider/cart_provider.dart';
+import 'package:automex_store/views/screens/main_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -96,7 +97,11 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                       style:
                           GoogleFonts.roboto(fontSize: 15, letterSpacing: 1.7),
                     ),
-                    TextButton(onPressed: () {}, child: Text('Shop Now'))
+                    TextButton(onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context){
+                        return MainScreen();
+                      }));
+                    }, child: Text('Shop Now'))
                   ],
                 ),
               )

@@ -75,6 +75,7 @@ class CartNotifier extends StateNotifier<Map<String, Cart>> {
 
   void removeCartItem(String productId) {
     state.remove(productId);
+    //Notify listeners that the state has changed
     state = {...state};
   }
 
