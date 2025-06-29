@@ -240,7 +240,10 @@ class _CartScreenState extends ConsumerState<CartScreen> {
                                         ],
                                       ),
                                       IconButton(
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          _cartProvider.removeCartItem(
+                                              cartItem.productId);
+                                        },
                                         icon: Icon(
                                           CupertinoIcons.delete,
                                         ),
